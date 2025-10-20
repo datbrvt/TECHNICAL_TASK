@@ -4,14 +4,14 @@ A simple, clean, and responsive real-time chat application built with React, Sup
 
 ## Features
 
-- ✅ Real-time messaging using Supabase Realtime channels
-- ✅ Message persistence with Supabase backend
-- ✅ Clean and intuitive user interface
-- ✅ Responsive design (works on desktop and mobile)
-- ✅ User identification with custom usernames
-- ✅ Message timestamps
-- ✅ Auto-scrolling to latest messages
-- ✅ Visual distinction between own messages and others
+-  Real-time messaging using Supabase Realtime channels
+-  Message persistence with Supabase backend
+-  Clean and intuitive user interface
+-  Responsive design (works on desktop and mobile)
+-  User identification with custom usernames
+-  Message timestamps
+-  Auto-scrolling to latest messages
+-  Visual distinction between own messages and others
 
 ## Technology Stack
 
@@ -25,7 +25,7 @@ A simple, clean, and responsive real-time chat application built with React, Sup
 
 ## How to Run
 
-This application is built on Figma Make and runs in the Figma Make environment. The app is automatically deployed and ready to use.
+This application is built by base on Figma photograph and runs in the VS CODE. The app is automatically deployed and ready to use.
 
 ### Using the Application
 

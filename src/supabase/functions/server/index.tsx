@@ -1,6 +1,6 @@
-import { Hono } from "npm:hono";
-import { cors } from "npm:hono/cors";
-import { logger } from "npm:hono/logger";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
 import * as kv from "./kv_store.tsx";
 const app = new Hono();
 
@@ -18,6 +18,14 @@ app.use(
     maxAge: 600,
   }),
 );
+function getErrorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  try {
+    return JSON.stringify(error);
+  } catch {
+    return String(error);
+  }
+}
 
 // Health check endpoint
 app.get("/make-server-f3d4f57a/health", (c) => {
@@ -34,8 +42,9 @@ app.get("/make-server-f3d4f57a/messages", async (c) => {
       .sort((a, b) => b.timestamp - a.timestamp);
     return c.json({ messages: sortedMessages });
   } catch (error) {
-    console.log(`Error fetching messages: ${error}`);
-    return c.json({ error: "Failed to fetch messages", details: error.message }, 500);
+    const msg = getErrorMessage(error);
+    console.log(`Error fetching messages: ${msg}`);
+    return c.json({ error: "Failed to fetch messages", details: msg }, 500);
   }
 });
 
@@ -58,9 +67,10 @@ app.post("/make-server-f3d4f57a/messages", async (c) => {
     await kv.set(`message:${message.id}`, JSON.stringify(message));
     return c.json({ message });
   } catch (error) {
-    console.log(`Error posting message: ${error}`);
-    return c.json({ error: "Failed to post message", details: error.message }, 500);
+    const msg = getErrorMessage(error);
+    console.log(`Error posting message: ${msg}`);
+    return c.json({ error: "Failed to post message", details: msg }, 500);
   }
 });
 
-Deno.serve(app.fetch);
+export default app.fetch;

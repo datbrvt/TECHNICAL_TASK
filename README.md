@@ -1,8 +1,4 @@
 
-  # Generate Code
-
-  This is a code bundle for Generate Code. The original project is available at https://www.figma.com/design/Wew1jTLHtwxekm0xpHgcho/Generate-Code.
-
   ## Running the code
 
   Run `npm i` to install the dependencies.
